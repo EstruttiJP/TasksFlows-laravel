@@ -13,7 +13,7 @@
 
     <!-- Navbar -->
     <nav class="bg-gray-800 flex justify-between items-center absolute top-0 w-full h-16">
-        <div class="text-white text-lg font-semibold ml-3">
+        <div class="text-white text-lg font-semibold ml-3 cursor-pointer" onclick="navigateToLogin()">
             <i class="fas fa-home mr-2"></i>
             Admin LTE
         </div>
@@ -24,6 +24,12 @@
             </button>
         </div>
     </nav>
+
+    <script>
+        function navigateToLogin() {
+            window.location.href = "https://adminlte.test/login"
+        }
+    </script>
 
     <div class="flex h-full pt-16"> <!-- Adicionamos padding-top para evitar sobreposição do navbar -->
         <!-- Sidebar -->
