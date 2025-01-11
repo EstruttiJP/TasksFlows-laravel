@@ -13,15 +13,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = DB::table('users')->get();
-        foreach ($users as $user) {
-            DB::table('users')->where('id', $user->id)->update(['department_id' => $this->getRandomDepartmentId()]);
-        }
-    }
-
-    private function getRandomDepartmentId()
-    {
         $departments = DB::table('departments')->pluck('id');
-        return $departments->random();
+        // Atualizar o `department_id` dos usuários 
+        DB::table('users')->orderBy('id')->chunk(100, function ($users) use ($departments) {
+            foreach ($users as $user) {
+                $randomDepartmentId = $departments->random();
+                DB::table('users')->where('id', $user->id)->update(['department_id' => $randomDepartmentId]); } });
     }
 }

@@ -1,8 +1,8 @@
 @extends('layout.default')
 @section('title', 'Edit Employee')
 @section('content')
-<main class="flex-1 p-4 overflow-auto">
-    <div class="p-6 space-y-4 sm:p-8 bg-white mt-8 rounded-lg shadow hover:shadow-lg transition-shadow">
+<div class="flex align-center justify-center">
+    <div class="p-6 space-y-4 sm:p-8 bg-white rounded-lg shadow hover:shadow-lg transition-shadow w-full max-w-3xl">
         <h2 class="text-lg font-semibold">{{$user->name}}</h2>
         @session('status')
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
@@ -61,22 +61,24 @@
                 @enderror
             </div>
             <div>
-                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Select Departament</label>
-                <select id="countries"
+                <label for="department_id" class="block mb-2 text-sm font-medium text-gray-900">Select
+                    Department</label>
+                <select id="department_id" name="department_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option>Information Technology (IT)</option>
-                    <option>Marketing</option>
-                    <option>Finance</option>
-                    <option>Human Resources (HR)</option>
+                    @foreach ($departments as $department)
+                        <option value="{{ $department->id }}" @selected($department->id == optional($user)->department_id)>
+                            {{ $department->name }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div>
-                <label for="countries" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
-                <select id="countries"
+                <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900">Role</label>
+                <select id="role_id" name="role_id"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                    <option>COMMON_USER</option>
-                    <option>MANAGER</option>
-                    <option>ADM</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}" @selected(optional($user)->role_id == $role->id || $role->name == 'COMMON_USER')>{{ $role->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <button type="submit"
@@ -85,5 +87,5 @@
             </button>
         </form>
     </div>
-</main>
+</div>
 @endsection

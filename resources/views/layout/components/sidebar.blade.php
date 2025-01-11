@@ -9,13 +9,13 @@
             </a>
         </li>
         <li class="text-gray-300 hover:bg-gray-700">
-            <a href="#" class="flex items-center p-2">
+            <a href="{{route("departments.index")}}" class="flex items-center p-2">
                 <i class="fas fa-building"></i>
                 <span class="ml-3">Departments</span>
             </a>
         </li>
         <li class="text-gray-300 hover:bg-gray-700">
-            <a href="#" class="flex items-center p-2">
+            <a href="{{route("projects.index")}}" class="flex items-center p-2">
                 <i class="fas fa-briefcase"></i>
                 <span class="ml-3">Projects</span>
             </a>

@@ -13,7 +13,9 @@
     @include('layout.components.header')
     <div class="flex h-full pt-16">
         @include('layout.components.sidebar')
-        @yield('content')
+        <main class="flex-1 p-4 pt-14  overflow-auto transition-all">
+            @yield('content')
+        </main>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
