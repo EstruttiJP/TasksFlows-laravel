@@ -22,7 +22,7 @@ class ProjectController extends Controller
             });
         });
 
-        $projects = $projects->paginate(10);
+        $projects = $projects->paginate(6);
 
         $totalProjects = Project::count();
         $totalEmployees = User::count();
@@ -99,4 +99,5 @@ class ProjectController extends Controller
         return back()
             ->with('status', 'Project successfully deleted');
     }
+    
 }
