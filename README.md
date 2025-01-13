@@ -11,6 +11,7 @@ TasksFlow is an application developed in Laravel with Tailwind CSS, utilizing La
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Email Configuration Tips](#email-configuration-tips)
+- [Database Configuration](#database-configuration)
 - [Usage](#usage)
 - [Access Policies](#access-policies)
 - [Data Models](#data-models)
@@ -96,11 +97,44 @@ To ensure proper email sending using Gmail, it is recommended to create an appli
 
 Following these steps, email sending should work correctly.
 
+## Database Configuration
+TasksFlow uses MySQL as the database. Follow these steps to configure the database:
+
+1. **Create a MySQL Database:**
+   - Log in to your MySQL server and create a new database:
+     ```sql
+     CREATE DATABASE tasksflow;
+     ```
+
+2. **Update the `.env` file:**
+   - Update the database settings in the `.env` file with your MySQL credentials:
+     ```env
+     DB_CONNECTION=mysql
+     DB_HOST=127.0.0.1
+     DB_PORT=3306
+     DB_DATABASE=tasksflow
+     DB_USERNAME=your-mysql-username
+     DB_PASSWORD=your-mysql-password
+     ```
+
+3. **Run the Migrations:**
+   - After configuring the database, run the migrations to create the necessary tables:
+     ```sh
+     php artisan migrate
+     ```
+
 ## Usage
 Run the application locally:
-```sh
-php artisan serve
-```
+
+1. **Start the Laravel server:**
+   ```sh
+   php artisan serve
+   ```
+
+2. **Compile the assets:**
+   ```sh
+   npm run dev
+   ```
 
 Access `http://localhost:8000` in your browser.
 
