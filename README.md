@@ -40,7 +40,7 @@ To install the application, follow these steps:
 
 2. Navigate to the project directory:
    ```sh
-   cd TasksFlow-laravel
+   cd TasksFlows-laravel
    ```
 
 3. Install dependencies:
