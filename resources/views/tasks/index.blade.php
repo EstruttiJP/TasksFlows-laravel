@@ -32,7 +32,7 @@
         </span>
         <input type="text" id="keyword" name="keyword"
             class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"
-            placeholder="Projeto Laravel">
+            placeholder="Task Laravel">
         <button type="submit"
             class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             <i class="fas fa-search text-white"></i>
@@ -46,17 +46,19 @@
         Add Task
     </a>
 @endcan
-<div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="mt-6 mb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
     @foreach ($tasks as $task) 
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow">
+        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer"
+            onclick="window.location='{{ route('tasks.show', $task->id) }}'">
             <div class="flex space-x-3">
                 @can('edit', \App\Models\User::class)
-                    <a href="#" class="text-blue-500 hover:text-blue-700">
+                    <a href="{{ route('tasks.edit', $task->id) }}" class="text-blue-500 hover:text-blue-700"
+                        onclick="event.stopPropagation();">
                         <i class="fas fa-edit"></i>
                     </a>
                 @endcan
                 @can('destroy', \App\Models\User::class)
-                    <form action="#" method="POST">
+                    <form action="{{route("tasks.destroy", $task->id)}}" method="POST" onsubmit="event.stopPropagation();">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-500 hover:text-red-700">
@@ -65,8 +67,11 @@
                     </form>
                 @endcan
             </div>
-            <h2 class="text-lg font-bold mb-2">#{{$task->id}}: {{ $task->name }}</h2>
-            <span class="{{ $task->status_color }}"> {{ $task->status }} </span>
+            <h2 class="text-lg font-bold mb-2">#{{ $task->id }}: {{ $task->name }}</h2>
+            <p class="flex items-center">
+                <i class="fas {{ $task->status_icon }} {{ $task->status_color }}"></i>
+                <span class="ml-2 {{ $task->status_color }}">{{ $task->status }}</span>
+            </p>
             <p class="text-gray-700 mb-1">{{ $task->description }}</p>
             <p class="text-gray-700 mb-1">{{ $task->project->name }}</p>
             <p class="text-gray-700 mb-1">Creator: {{ $task->creator }}</p>

@@ -66,7 +66,20 @@
                 @endcan
             </div>
             <h2 class="text-lg font-bold mb-2">#{{$department->id}}: {{ $department->name }}</h2>
-            <a href="#" class="text-blue-500 hover:underline">see more</a>
+            <form action="{{ route("employees.index") }}" method="GET">
+                <input type="hidden" name="department" value="{{$department->name}}">
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ml-1 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <i class="fas fa-users mr-1"></i>
+                    Employees</button>
+            </form>
+            <form action="{{ route("projects.index") }}" method="GET">
+                <input type="hidden" name="department" value="{{$department->name}}">
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 ml-1 mt-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                    <i class="fas fa-briefcase mr-1"></i>
+                    Projects</button>
+            </form>
         </div>
     @endforeach
 </div>

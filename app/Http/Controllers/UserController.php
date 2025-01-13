@@ -17,10 +17,18 @@ class UserController extends Controller
     {
         $users = User::query();
 
+        // Filtrar por keyword
         $users->when($request->keyword, function ($query, $keyword) {
             $query->where(function ($q) use ($keyword) {
                 $q->where('name', 'like', '%' . $keyword . '%')
                     ->orWhere('email', 'like', '%' . $keyword . '%');
+            });
+        });
+
+        // Filtrar por department
+        $users->when($request->department, function ($query, $department) {
+            $query->whereHas('department', function ($q) use ($department) {
+                $q->where('name', 'like', '%' . $department . '%');
             });
         });
 
@@ -34,9 +42,10 @@ class UserController extends Controller
             'users' => $users,
             'totalEmployee' => $totalEmployee,
             'totalProject' => $totalProject,
-            "totalTask" => $totalTask
+            'totalTask' => $totalTask
         ]);
     }
+
     public function edit(User $user)
     {
         Gate::authorize('edit', User::class);

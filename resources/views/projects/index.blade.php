@@ -32,7 +32,7 @@
         </span>
         <input type="text" id="keyword" name="keyword"
             class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5"
-            placeholder="Projeto Laravel">
+            placeholder="Project Laravel">
         <button type="submit"
             class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             <i class="fas fa-search text-white"></i>

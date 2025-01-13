@@ -22,6 +22,12 @@ class ProjectController extends Controller
             });
         });
 
+        $projects->when($request->department, function ($query, $department) {
+            $query->whereHas('department', function ($q) use ($department) {
+                $q->where('name', 'like', '%' . $department . '%');
+            });
+        });
+
         $projects = $projects->paginate(6);
 
         $totalProjects = Project::count();
@@ -47,7 +53,6 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        // Remova a autorização para simplificar o teste
         Gate::authorize('edit', User::class);
 
         // Validação dos dados do formulário
